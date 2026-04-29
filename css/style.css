@@ -1,0 +1,220 @@
+/* ==========================================================================
+   GENEL AYARLAR (Tüm Sayfalar İçin Ortak)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Dancing+Script:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fdf6ec;
+  color: #333;
+}
+
+/* ===== NAVBAR (Tüm Sayfalar) ===== */
+header {
+  background-color: #fdf6ec;
+  border-bottom: 2px solid #e8d8c0;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #b5934a;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+nav ul a:hover,
+nav ul a.active {
+  color: #b5934a;
+}
+
+/* ===== BUTONLAR (Genel Kullanım) ===== */
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn-dark {
+  background-color: #3d3d2a;
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #b5934a;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #3d3d2a;
+  color: #3d3d2a;
+}
+
+.btn-outline:hover {
+  background-color: #3d3d2a;
+  color: white;
+}
+
+/* ==========================================================================
+   ANA SAYFA (index.html)
+   ========================================================================== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 80px;
+  gap: 40px;
+  background: linear-gradient(to right, #fdf6ec, #f0e4cc);
+}
+
+.hero-text h1 {
+  font-size: 42px;
+  color: #3d3d2a;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.hero-text h1 span {
+  color: #b5934a;
+}
+
+.hero-text p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+  max-width: 420px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 15px;
+}
+
+.hero-img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(135deg, #e8d8c0, #b5934a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  flex-shrink: 0;
+}
+
+/* ===== BÖLÜM BAŞLIKLARI VE KARTLAR (Genel ve Ana Sayfa) ===== */
+.section {
+  padding: 60px 80px;
+}
+
+.section-alt {
+  background-color: #f0e4cc;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title span {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #b5934a;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.section-title h2 {
+  font-size: 30px;
+  color: #3d3d2a;
+  margin-top: 8px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  font-size: 16px;
+  color: #3d3d2a;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #888;
+}
+
+
+
+/* ==========================================================================
+   FOOTER (Tüm Sayfalar)
+   ========================================================================== */
+footer {
+  background: #1e1e14;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 13px;
+}
+
+footer .footer-logo {
+  font-size: 20px;
+  color: #d4aa5e;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
