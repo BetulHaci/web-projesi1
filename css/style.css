@@ -200,25 +200,6 @@ nav ul a.active {
 }
 
 
-
-/* ==========================================================================
-   FOOTER (Tüm Sayfalar)
-   ========================================================================== */
-footer {
-  background: #1e1e14;
-  color: rgba(255, 255, 255, 0.6);
-  text-align: center;
-  padding: 32px 20px;
-  font-size: 13px;
-}
-
-footer .footer-logo {
-  font-size: 20px;
-  color: #d4aa5e;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
 /* ==========================================================================
    CV SAYFASI (cv.html)
    ========================================================================== */
@@ -305,4 +286,50 @@ footer .footer-logo {
 .cv-item p {
   font-size: 13px;
   color: #888;
+}
+
+
+/* ==========================================================================
+   ŞEHİR VE MİRAS SAYFALARI (sehir.html)
+   ========================================================================== */
+.page-banner {
+  background: linear-gradient(rgba(30, 30, 20, 0.6), rgba(30, 30, 20, 0.6)),
+    url('https://upload.wikimedia.org/wikipedia/commons/8/8e/Samsun_panorama.jpg') center/cover;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+}
+
+.page-banner h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.page-banner p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+
+
+/* ==========================================================================
+   FOOTER (Tüm Sayfalar)
+   ========================================================================== */
+footer {
+  background: #1e1e14;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 13px;
+}
+
+footer .footer-logo {
+  font-size: 20px;
+  color: #d4aa5e;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
