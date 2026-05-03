@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Betül Haci | Favori Kitaplarım</title>
+  <meta name="description" content="Google Books API ile dinamik olarak listelenen favori kitaplarım.">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts: El yazısı ve Serif fontlar -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Betül Haci</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="sehir.html">Şehrim</a></li>
+        <li><a href="miras.html">Mirasımız</a></li>
+        <li><a href="ilgi.html" class="active">İlgi Alanlarım</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="login.html">Giriş Yap</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="header-section">
+    <h1 class="main-title">Kitap Dünyam 📚📖</h1>
+    <p class="api-note">Bu veriler Google Books API aracılığıyla dinamik olarak yüklenmektedir.</p>
+
+    <div class="section-divider">
+      ✦ Favori Kitaplarım ✦
+    </div>
+  </div>
+
+  <main class="books-container">
+    <div class="books-grid" id="booksGrid">
+      <div class="loader">
+        <div class="spinner"></div>
+        <p class="loader-text">Kitaplar yükleniyor...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo">Betül Haci</div>
+    <p>Web Teknolojileri Dersi Proje Ödevi &nbsp;|&nbsp; 2025-2026 Bahar Dönemi</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

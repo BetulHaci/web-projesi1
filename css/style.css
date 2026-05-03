@@ -315,6 +315,215 @@ nav ul a.active {
 }
 
 
+/* ==========================================================================
+   İLGİ ALANLARIM SAYFASI (ilgi.html)
+   ========================================================================== */
+.header-section {
+  text-align: center;
+  padding: 60px 20px 20px;
+  background: linear-gradient(135deg, #fdf6ec, #f0e4cc);
+}
+
+.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: #3d3d2a;
+  margin-bottom: 10px;
+}
+
+.api-note {
+  font-size: 14px;
+  color: #b5934a;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 24px;
+  color: #3d3d2a;
+  margin: 40px 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  height: 1px;
+  width: 100px;
+  background: #e8d8c0;
+}
+
+.books-container {
+  padding: 40px 80px 80px;
+  background-color: #fdf6ec;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.book-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(61, 61, 42, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  border: 1px solid rgba(232, 216, 192, 0.5);
+  overflow: hidden;
+}
+
+.book-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(181, 147, 74, 0.15);
+  border-color: #b5934a;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #fdf6ec;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #3d3d2a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.3s;
+  z-index: 10;
+  opacity: 0;
+}
+
+.book-card:hover .close-btn {
+  opacity: 1;
+}
+
+.close-btn:hover {
+  background: #3d3d2a;
+  color: #fff;
+}
+
+.book-poster {
+  width: 100%;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.book-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.book-card:hover .book-poster img {
+  transform: scale(1.08);
+}
+
+.book-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #3d3d2a;
+  margin-bottom: 8px;
+  height: 50px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-meta {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.book-meta span {
+  color: #b5934a;
+  font-weight: 600;
+}
+
+.btn-incele {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #3d3d2a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s;
+  border: 2px solid #3d3d2a;
+}
+
+.btn-incele:hover {
+  background: transparent;
+  color: #3d3d2a;
+}
+
+.book-author {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 15px;
+}
+
+/* ===== Yükleyici (Loader) Stilleri ===== */
+.loader {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px;
+}
+
+.loader-text {
+  margin-top: 15px;
+  color: #888;
+  font-size: 14px;
+}
+
+.error-msg-books {
+  text-align: center;
+  grid-column: 1 / -1;
+  color: #c0392b;
+  padding: 40px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e8d8c0;
+  border-top: 4px solid #b5934a;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 /* ==========================================================================
    FOOTER (Tüm Sayfalar)
@@ -332,4 +541,64 @@ footer .footer-logo {
   color: #d4aa5e;
   font-weight: 700;
   margin-bottom: 8px;
+}
+/* ==========================================================================
+   MOBİL UYUM (Responsive Tasarım)
+   ========================================================================== */
+@media (max-width: 768px) {
+  header {
+    padding: 15px 20px;
+  }
+
+  nav ul {
+    gap: 14px;
+  }
+
+  nav ul a {
+    font-size: 13px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  .hero-text p {
+    margin: 0 auto 24px;
+  }
+
+  .hero-btns {
+    justify-content: center;
+  }
+
+  .hero-img {
+    width: 200px;
+    height: 200px;
+    font-size: 60px;
+  }
+
+  .section {
+    padding: 50px 20px;
+  }
+
+  .cv-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .books-container {
+    padding: 30px 20px;
+  }
+
+  .books-grid {
+    gap: 20px;
+  }
+
+  .main-title {
+    font-size: 32px;
+  }
 }
