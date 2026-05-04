@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Betül Haci | İletişim</title>
+  <meta name="description" content="Betül Haci iletişim sayfası – form ve iletişim bilgileri.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">Betül Haci</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="sehir.html">Şehrim</a></li>
+        <li><a href="miras.html">Mirasımız</a></li>
+        <li><a href="ilgi.html">İlgi Alanlarım</a></li>
+        <li><a href="iletisim.html" class="active">İletişim</a></li>
+        <li><a href="login.html">Giriş Yap</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="section">
+    <div class="section-title">
+      <span>İletişim</span>
+      <h2>Benimle İletişime Geç</h2>
+    </div>
+
+    <div class="contact-layout">
+      <!-- İLETİŞİM BİLGİLERİ -->
+      <div>
+        <h3 style="font-size:20px; color:#3d3d2a; margin-bottom:28px;">İletişim Bilgileri</h3>
+
+        <div class="contact-info-item">
+          <div class="ci-icon">📧</div>
+          <div>
+            <h4>E-posta</h4>
+            <p>betul.haci@ogr.sakarya.edu.tr</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+                <div class="ci-icon">📧</div>
+                <div>
+                    <h4>E-posta</h4>
+                    <p>betulhaci7@gmail.com</p>
+                </div>
+       </div>
+
+        <div class="contact-info-item">
+          <div class="ci-icon">📱</div>
+          <div>
+            <h4>Telefon</h4>
+            <p>+90 534-297-27-89</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="ci-icon">📍</div>
+          <div>
+            <h4>Konum</h4>
+            <p>Sakarya, Türkiye</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="ci-icon">🐙</div>
+          <div>
+            <h4>GitHub</h4>
+            <p>github.com/BetulHaci</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="form-box">
+        <h3>Mesaj Gönder</h3>
+
+        <form id="contactForm" novalidate>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label for="name">Ad Soyad *</label>
+              <input type="text" id="name" placeholder="Adınız">
+              <span class="error-msg" id="nameErr">Ad Soyad zorunludur.</span>
+            </div>
+            <div class="form-group">
+              <label for="email">E-posta *</label>
+              <input type="email" id="email" placeholder="ornek@mail.com">
+              <span class="error-msg" id="emailErr">Geçerli bir e-posta girin.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" placeholder="05XX XXX XX XX">
+            <span class="error-msg" id="phoneErr">Geçerli bir telefon numarası girin.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Konu *</label>
+            <select id="subject">
+              <option value="">Konu seçin...</option>
+              <option value="proje">Proje İşbirliği</option>
+              <option value="freelance">Freelance Teklif</option>
+              <option value="soru">Genel Soru</option>
+              <option value="diger">Diğer</option>
+            </select>
+            <span class="error-msg" id="subjectErr">Lütfen bir konu seçin.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mesaj *</label>
+            <textarea id="message" placeholder="Mesajınızı buraya yazın..."></textarea>
+            <span class="error-msg" id="messageErr">Mesaj en az 10 karakter olmalıdır.</span>
+          </div>
+
+          <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" id="consent" style="width:auto; cursor:pointer;">
+            <label for="consent" style="font-size:13px; font-weight:400; cursor:pointer;">
+              Kişisel verilerimin işlenmesini kabul ediyorum. *
+            </label>
+          </div>
+          <span class="error-msg" id="consentErr">Bu alanı işaretlemeniz zorunludur.</span>
+
+          <button type="submit" class="btn btn-dark" style="width:100%; margin-top:8px;">Mesaj Gönder ✉️</button>
+
+          <div class="success-box" id="successMsg">
+            ✅ Mesajınız başarıyla gönderildi! En kısa sürede dönüş yapacağım.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Betül Haci</div>
+    <p>Web Teknolojileri Dersi Proje Ödevi &nbsp;|&nbsp; 2025-2026 Bahar Dönemi</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
