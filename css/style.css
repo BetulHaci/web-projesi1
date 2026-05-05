@@ -643,6 +643,61 @@ nav ul a.active {
 }
 
 /* ==========================================================================
+   GİRİŞ YAP SAYFASI (login.html)
+   ========================================================================== */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3d3d2a, #1e1e14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.login-box .logo {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.login-box .subtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 32px;
+}
+
+.alert-box {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 13px;
+  margin-top: 14px;
+  display: none;
+}
+
+.alert-box.show {
+  display: block;
+}
+
+.alert-error {
+  background: #fde8e8;
+  color: #c0392b;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+}
+
+
+/* ==========================================================================
    FOOTER (Tüm Sayfalar)
    ========================================================================== */
 footer {
