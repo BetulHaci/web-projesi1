@@ -1,4 +1,26 @@
 /* ==========================================================================
+   HAMBURGER MENÜ (Tüm Sayfalar)
+   ========================================================================== */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mainNav = document.getElementById('mainNav');
+
+if (hamburgerBtn && mainNav) {
+    hamburgerBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mainNav.classList.toggle('open');
+    });
+
+    // Menü linkine tıklayınca menüyü kapat
+    const navLinks = mainNav.querySelectorAll('a');
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            mainNav.classList.remove('open');
+        });
+    });
+}
+
+/* ==========================================================================
    İLGİ ALANLARIM (Kitap Galerisi - ilgi.html)
    ========================================================================== */
 const booksGrid = document.getElementById('booksGrid');
