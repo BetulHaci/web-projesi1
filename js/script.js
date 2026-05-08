@@ -95,14 +95,15 @@ if (booksGrid) {
 }
 
 /* ==========================================================================
-   İLETİŞİM FORMU (iletisim.html)
+   İLETİŞİM FORMU DOĞRULAMALARI (iletisim.html)
    ========================================================================== */
 const contactForm = document.getElementById('contactForm');
+const nativeSubmit = document.getElementById('nativeSubmit');
+const vueSubmit = document.getElementById('vueSubmit');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
+if (contactForm && nativeSubmit) {
+    // 1. NATIVE JAVASCRIPT DOĞRULAMASI
+    nativeSubmit.addEventListener('click', function() {
         let valid = true;
 
         // Ad kontrolü
@@ -136,15 +137,27 @@ if (contactForm) {
             phoneErr.classList.remove('show');
         }
 
-        // Konu kontrolü
-        const subject = document.getElementById('subject').value;
-        const subjectErr = document.getElementById('subjectErr');
-        if (!subject) {
-            subjectErr.classList.add('show');
+        // Cinsiyet kontrolü
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const genderErr = document.getElementById('genderErr');
+        if (!gender) {
+            genderErr.classList.add('show');
             valid = false;
         } else {
-            subjectErr.classList.remove('show');
+            genderErr.classList.remove('show');
         }
+
+        // Şehir kontrolü
+        const city = document.getElementById('city').value.trim();
+        const cityErr = document.getElementById('cityErr');
+        if (city.length < 2) {
+            cityErr.classList.add('show');
+            valid = false;
+        } else {
+            cityErr.classList.remove('show');
+        }
+
+
 
         // Mesaj kontrolü
         const message = document.getElementById('message').value.trim();
@@ -166,12 +179,87 @@ if (contactForm) {
             consentErr.classList.remove('show');
         }
 
-        // Başarı mesajı
         if (valid) {
-            document.getElementById('successMsg').classList.add('show');
-            this.reset();
+            alert("Native JS: Doğrulama başarılı! Form gönderiliyor...");
+            contactForm.submit();
         }
     });
+}
+
+// 2. VUE.JS / LIBRARY DOĞRULAMASI
+if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
+    const { createApp } = Vue;
+
+    createApp({
+        methods: {
+            validateWithVue() {
+                let valid = true;
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const gender = document.querySelector('input[name="gender"]:checked');
+                const message = document.getElementById('message').value.trim();
+                const consent = document.getElementById('consent').checked;
+
+                if (name.length < 2) {
+                    document.getElementById('nameErr').classList.add('show');
+                    valid = false;
+                } else {
+                    document.getElementById('nameErr').classList.remove('show');
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailErr').classList.add('show');
+                    valid = false;
+                } else {
+                    document.getElementById('emailErr').classList.remove('show');
+                }
+
+                if (phone && !/^[0-9\s\+\-]{10,15}$/.test(phone)) {
+                    document.getElementById('phoneErr').classList.add('show');
+                    valid = false;
+                } else {
+                    document.getElementById('phoneErr').classList.remove('show');
+                }
+
+                if (!gender) {
+                    document.getElementById('genderErr').classList.add('show');
+                    valid = false;
+                } else {
+                    document.getElementById('genderErr').classList.remove('show');
+                }
+
+                const city = document.getElementById('city').value.trim();
+                if (!city || city === "") {
+                    document.getElementById('cityErr').classList.add('show');
+                    valid = false;
+                } else {
+                    document.getElementById('cityErr').classList.remove('show');
+                }
+
+                if (message.length < 10) {
+                    document.getElementById('messageErr').classList.add('show');
+                    valid = false;
+                } else {
+                    document.getElementById('messageErr').classList.remove('show');
+                }
+
+                if (!consent) {
+                    document.getElementById('consentErr').classList.add('show');
+                    valid = false;
+                } else {
+                    document.getElementById('consentErr').classList.remove('show');
+                }
+
+                if (valid) {
+                    alert("Vue.js Library: Doğrulama başarılı! Form gönderiliyor...");
+                    document.getElementById('contactForm').submit();
+                }
+            }
+        }
+    }).mount('#vueApp');
 }
 
 /* ==========================================================================
@@ -212,13 +300,15 @@ if (loginForm) {
 
         if (!valid) return;
 
-        // Giriş kontrolü (Demo bilgiler: b241210060@sakarya.edu.tr / 123456)
-        if (studentNo === 'b241210060@sakarya.edu.tr' && password === '123456') {
+        const studentPrefix = studentNo.split('@')[0];
+
+        // Giriş kontrolü (Öğrenci numarası ve şifre aynı olmalı)
+        if (studentPrefix === password && studentPrefix !== '') {
             loginError.classList.remove('show');
             loginSuccess.classList.add('show');
             setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2000);
+                loginForm.submit();
+            }, 1000);
         } else {
             loginSuccess.classList.remove('show');
             loginError.classList.add('show');

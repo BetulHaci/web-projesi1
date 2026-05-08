@@ -14,16 +14,16 @@
       <div class="logo">Betül Haci</div>
       <p class="subtitle">Öğrenci numaranız ve şifrenizle giriş yapın</p>
 
-      <form id="loginForm" novalidate>
+      <form id="loginForm" action="php/login.php" method="POST" novalidate>
         <div class="form-group">
           <label for="studentNo">Öğrenci Numarası *</label>
-          <input type="text" id="studentNo" placeholder="b241210060@sakarya.edu.tr">
+          <input type="text" id="studentNo" name="studentNo" placeholder="b241210060@sakarya.edu.tr">
           <span class="error-msg" id="studentNoErr">Geçerli bir öğrenci e-postası girin.</span>
         </div>
 
         <div class="form-group">
           <label for="password">Şifre *</label>
-          <input type="password" id="password" placeholder="Şifrenizi girin">
+          <input type="password" id="password" name="password" placeholder="Şifrenizi girin">
           <span class="error-msg" id="passwordErr">Şifre en az 6 karakter olmalıdır.</span>
         </div>
 
