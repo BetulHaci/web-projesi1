@@ -32,8 +32,7 @@ if (empty($message)) $message = "Belirtilmedi";
     }
     
     .bg-image {
-      /* Görseldeki açık mavi - bej/pembe degrade arka plan */
-      background: linear-gradient(180deg, #e8d8c0 0%, #b5934a 100%);
+      background: linear-gradient(135deg, #e8d8c0 0%, #d4b572 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -42,35 +41,37 @@ if (empty($message)) $message = "Belirtilmedi";
     }
     
     .message-card {
-      background-color: #fdf6ec;
-      border-radius: 20px;
+      background-color: rgba(253, 246, 236, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
       padding: 50px 40px;
       max-width: 600px;
       width: 100%;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 20px 50px rgba(61, 61, 42, 0.15);
       text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.6);
     }
     
     .message-card h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 52px;
-      color: #3d3d2a; /* Görseldeki zeytin yeşili */
+      font-size: 48px;
+      color: #3d3d2a;
       margin-bottom: 30px;
       font-weight: 600;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
     }
     
     .data-box {
-      background-color: #eee5e5;
-      border-radius: 10px;
+      background-color: rgba(238, 229, 229, 0.7);
+      border-radius: 12px;
       padding: 25px;
       text-align: left;
-      border: 1px solid #dcd1d1;
+      border: 1px solid rgba(220, 209, 209, 0.8);
       margin-bottom: 40px;
     }
     
     .data-box h3 {
-      font-size: 15px;
+      font-size: 16px;
       color: #555;
       font-weight: 500;
       margin-bottom: 15px;
@@ -78,38 +79,39 @@ if (empty($message)) $message = "Belirtilmedi";
     
     .data-divider {
       height: 1px;
-      background-color: #dcd1d1;
+      background-color: rgba(220, 209, 209, 0.8);
       margin-bottom: 20px;
     }
     
     .data-item {
       font-size: 15px;
       color: #444;
-      margin-bottom: 8px;
-      line-height: 1.5;
+      margin-bottom: 10px;
+      line-height: 1.6;
     }
     
     .data-item strong {
       font-weight: 600;
-      color: #796e1a;
+      color: #6a6015;
     }
     
     .btn-back {
-      background-color: #3d3d2a;
+      background-color: #4a4a35;
       color: white;
       text-decoration: none;
       padding: 14px 40px;
       border-radius: 30px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 500;
       letter-spacing: 1px;
       display: inline-block;
-      transition: background 0.3s;
-      text-transform: uppercase;
+      transition: all 0.3s ease;
     }
     
     .btn-back:hover {
-      background-color: #3d3d2a;
+      background-color: #2b2b1d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(43, 43, 29, 0.2);
     }
   </style>
 </head>

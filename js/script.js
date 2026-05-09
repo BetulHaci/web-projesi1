@@ -28,9 +28,7 @@ const booksGrid = document.getElementById('booksGrid');
 if (booksGrid) {
     const myFavoriteBooks = [
         "Melekler ve Şeytanlar Dan Brown",
-        "Aynı Yıldızın Altında John Green",
         "Bülbülü Öldürmek Harper Lee",
-        "Unutulmaz Aşk Nicholas Sparks",
         "1984 George Orwell",
         "Sevdalinka Ayşe Kulin",
         "Nefes Nefese Ayşe Kulin",
@@ -314,4 +312,53 @@ if (loginForm) {
             loginError.classList.add('show');
         }
     });
+}
+
+/* ==========================================================================
+   SLIDER (sehir.html)
+   ========================================================================== */
+const sliderSection = document.querySelector('.slider');
+if (sliderSection) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        if (index >= slides.length) currentSlide = 0;
+        else if (index < 0) currentSlide = slides.length - 1;
+        else currentSlide = index;
+
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        slides[currentSlide].classList.add('active');
+        if (dots.length > 0) {
+            dots[currentSlide].classList.add('active');
+        }
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+
+    // Otomatik geçiş
+    setInterval(() => {
+        showSlide(currentSlide + 1);
+    }, 5000);
 }
