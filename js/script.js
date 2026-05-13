@@ -178,7 +178,6 @@ if (contactForm && nativeSubmit) {
         }
 
         if (valid) {
-            alert("Native JS: Doğrulama başarılı! Form gönderiliyor...");
             contactForm.submit();
         }
     });
@@ -252,7 +251,6 @@ if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
                 }
 
                 if (valid) {
-                    alert("Vue.js Library: Doğrulama başarılı! Form gönderiliyor...");
                     document.getElementById('contactForm').submit();
                 }
             }
@@ -266,20 +264,34 @@ if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
 const loginForm = document.getElementById('loginForm');
 
 if (loginForm) {
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // Sayfa yüklendiğinde URL'de hata parametresi var mı kontrol et
+    window.addEventListener('load', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            const loginError = document.getElementById('loginError');
+            if (loginError) {
+                loginError.classList.add('show');
+                // Opsiyonel: Hata tipine göre mesajı özelleştirebilirsiniz
+                if (urlParams.get('error') === 'empty') {
+                    loginError.innerHTML = '❌ Lütfen tüm alanları doldurun!';
+                } else {
+                    loginError.innerHTML = '❌ Hatalı kullanıcı adı veya şifre!';
+                }
+            }
+        }
+    });
 
+    loginForm.addEventListener('submit', function(e) {
+        // İstemci tarafı temel doğrulama
         const studentNo = document.getElementById('studentNo').value.trim();
         const password = document.getElementById('password').value.trim();
 
         const studentNoErr = document.getElementById('studentNoErr');
         const passwordErr = document.getElementById('passwordErr');
-        const loginError = document.getElementById('loginError');
-        const loginSuccess = document.getElementById('loginSuccess');
-
+        
         let valid = true;
 
-        // Öğrenci no (e-posta) kontrolü
+        // Öğrenci no (e-posta) format kontrolü
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(studentNo)) {
             studentNoErr.classList.add('show');
@@ -288,29 +300,20 @@ if (loginForm) {
             studentNoErr.classList.remove('show');
         }
 
-        // Şifre kontrolü
-        if (password.length < 6) {
+        // Şifre boş mu kontrolü
+        if (password === "") {
             passwordErr.classList.add('show');
             valid = false;
         } else {
             passwordErr.classList.remove('show');
         }
 
-        if (!valid) return;
-
-        const studentPrefix = studentNo.split('@')[0];
-
-        // Giriş kontrolü (Öğrenci numarası ve şifre aynı olmalı)
-        if (studentPrefix === password && studentPrefix !== '') {
-            loginError.classList.remove('show');
-            loginSuccess.classList.add('show');
-            setTimeout(() => {
-                loginForm.submit();
-            }, 1000);
-        } else {
-            loginSuccess.classList.remove('show');
-            loginError.classList.add('show');
+        if (!valid) {
+            e.preventDefault();
+            return;
         }
+        
+        // Eğer her şey normalse, form normal şekilde PHP'ye POST edilir (e.preventDefault() çağrılmadığı için)
     });
 }
 

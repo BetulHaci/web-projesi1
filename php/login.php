@@ -1,10 +1,24 @@
 <?php
-$studentNo = isset($_POST['studentNo']) ? $_POST['studentNo'] : '';
-$password = isset($_POST['password']) ? $_POST['password'] : '';
+$studentNo = isset($_POST['studentNo']) ? trim($_POST['studentNo']) : '';
+$password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
+// Boş alan kontrolü
+if (empty($studentNo) || empty($password)) {
+    header("Location: ../login.html?error=empty");
+    exit();
+}
+
+// Mail formatı kontrolü (Opsiyonel ama iyi olur)
+if (!filter_var($studentNo, FILTER_VALIDATE_EMAIL)) {
+    header("Location: ../login.html?error=invalid_format");
+    exit();
+}
+
+// E-posta adresinden öğrenci numarasını ayıkla (Örn: b2412100001@sakarya.edu.tr -> b2412100001)
 $studentPrefix = explode('@', $studentNo)[0];
 
-if ($studentPrefix === $password && $studentPrefix !== '') {
+// Şifre ile öğrenci numarasının karşılaştırılması
+if ($studentPrefix === $password) {
     // Giriş başarılı
 ?>
 <!DOCTYPE html>
@@ -72,6 +86,21 @@ if ($studentPrefix === $password && $studentPrefix !== '') {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(43, 43, 29, 0.2);
     }
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: #4a4a35;
+      border: 2px solid #4a4a35;
+    }
+    .btn-secondary:hover {
+      background-color: #4a4a35;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -79,15 +108,18 @@ if ($studentPrefix === $password && $studentPrefix !== '') {
     <div class="welcome-card">
       <h1>Hoşgeldiniz <?php echo htmlspecialchars($studentPrefix); ?></h1>
       <p>Giriş işleminiz başarıyla tamamlandı.</p>
-      <a href="../index.html" class="btn-welcome">Ana Sayfaya Dön</a>
+      <div class="btn-container">
+        <a href="../index.html" class="btn-welcome">Ana Sayfaya Dön</a>
+        <a href="../login.html" class="btn-welcome btn-secondary">Giriş Sayfasına Dön</a>
+      </div>
     </div>
   </div>
 </body>
 </html>
 <?php
 } else {
-    // Başarısız ise login sayfasına geri dön
-    header("Location: ../login.html");
+    // Bilgiler hatalı ise hata parametresiyle geri dön
+    header("Location: ../login.html?error=failed");
     exit();
 }
 ?>
