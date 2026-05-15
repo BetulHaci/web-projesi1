@@ -2,22 +2,30 @@
 <html lang="tr">
 
 <head>
+    <!-- Karakter seti ve responsive ayarları -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Betül Haci | Hakkımda</title>
+    <!-- SEO için meta açıklaması -->
     <meta name="description" content="Betül Haci kişisel web sitesi – hakkımda sayfası.">
+    <!-- Harici CSS dosyasını bağla -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <header>
+        <!-- Logo Alanı -->
         <div class="logo">Betül Haci</div>
-     <button class="hamburger" id="hamburgerBtn" aria-label="Menüyü aç">
+        
+        <!-- Mobil Menü Butonu (Hamburger) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menüyü aç">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        
+        <!-- Ana Navigasyon Menüsü -->
         <nav id="mainNav">
             <ul>
                 <li><a href="index.html" class="active">Ana Sayfa</a></li>
@@ -31,56 +39,69 @@
         </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO BÖLÜMÜ (Karşılama Alanı) -->
     <section class="hero">
         <div class="hero-text">
             <h1>Merhaba! 👋<br>Ben <span>Betül Haci</span></h1>
-            <p>Prizren, Kosova'dan Bilgisayar Mühendisliği öğrencisiyim. Web teknolojileri ile ilgileniyor, atlarla
-                vakit geçirmeyi, resim çizmeyi ve yeni yerleri keşfetmeyi seviyorum.</p>
+            <p>Kosova-Prizrenli Sakarya Üniversitesinde Bilgisayar Mühendisliği öğrencisiyim. Yazılımla, web tasarlama ve geliştirmekle 
+                ilgileniyor, atlarla vakit geçirmeyi, resim çizmeyi ve yeni yerleri keşfetmeyi seviyorum.</p>
             <div class="hero-btns">
                 <a href="cv.html" class="btn btn-dark">CV'me Bak</a>
                 <a href="iletisim.html" class="btn btn-outline">İletişime Geç</a>
             </div>
         </div>
+        <!-- Profil Resmi Alanı -->
         <div class="hero-img"><img src="images/image1.jpeg" alt="Betül Haci"></div>
     </section>
 
-    <!-- HAKKIMDA -->
+    <!-- HAKKIMDA BÖLÜMÜ (Bilgi Kartları) -->
     <section class="section section-alt">
         <div class="section-title">
             <span>Hakkımda</span>
             <h2>Kısaca Ben</h2>
         </div>
         <div class="card-grid">
+            <!-- Eğitim Bilgisi -->
             <div class="card">
                 <div class="card-icon">🎓</div>
                 <h3>Eğitim</h3>
                 <p>Gjon Buzuku Fen Lisesi mezunuyum. Şu an Sakarya Üniversitesi Bilgisayar Mühendisliği öğrencisiyim.
                 </p>
             </div>
+            <!-- Teknoloji Bilgisi -->
             <div class="card">
                 <div class="card-icon">💻</div>
                 <h3>Teknoloji</h3>
-                <p>HTML, CSS, JavaScript ve PHP kullanarak web uygulamaları geliştiriyorum.</p>
+                <p>C++, C#, HTML, CSS, JavaScript ve PHP 'le ilgileniyorum.</p>
             </div>
+            <!-- Atlar - Hobiler -->
             <div class="card">
                 <div class="card-icon">🐴</div>
                 <h3>Atlarla Vakit</h3>
                 <p>Atlarla vakit geçirmek benim için hem bir hobi hem de bir tutku.</p>
             </div>
+            <!-- Sanat - Hobiler -->
             <div class="card">
                 <div class="card-icon">🎨</div>
                 <h3>Sanat & Keşif</h3>
                 <p>Resim çizmek ve bilmediğim yerleri gezmek en sevdiğim aktiviteler.</p>
             </div>
+            <!-- Satranç - Hobiler -->
+            <div class="card">
+                <div class="card-icon">♟️</div>
+                <h3>Satranç</h3>
+                <p>Ayrıca boş vakitlerimde satranç oynayarak zihnimi zorlamaktan keyif alırım.</p>
+            </div>
         </div>
     </section>
 
+    <!-- ALT BİLGİ (Footer) -->
     <footer>
         <div class="footer-logo">Betül Haci</div>
         <p>Web Teknolojileri Dersi Proje Ödevi &nbsp;|&nbsp; 2025-2026 Bahar Dönemi</p>
     </footer>
 
+    <!-- Harici JavaScript dosyasını bağla -->
     <script src="js/script.js"></script>
 </body>
 

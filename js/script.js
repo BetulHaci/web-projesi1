@@ -1,16 +1,18 @@
 /* ==========================================================================
    HAMBURGER MENÜ (Tüm Sayfalar)
+   - Mobil cihazlarda menünün açılıp kapanmasını sağlar.
    ========================================================================== */
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const mainNav = document.getElementById('mainNav');
+const hamburgerBtn = document.getElementById('hamburgerBtn'); // Hamburger butonunu seç
+const mainNav = document.getElementById('mainNav'); // Ana navigasyon menüsünü seç
 
 if (hamburgerBtn && mainNav) {
+    // Butona tıklandığında menüyü aç/kapat
     hamburgerBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mainNav.classList.toggle('open');
+        this.classList.toggle('active'); // Butona 'active' sınıfını ekle/çıkar (animasyon için)
+        mainNav.classList.toggle('open'); // Menüye 'open' sınıfını ekle/çıkar (görünürlük için)
     });
 
-    // Menü linkine tıklayınca menüyü kapat
+    // Menüdeki bir linke tıklandığında menüyü otomatik kapat
     const navLinks = mainNav.querySelectorAll('a');
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
@@ -22,10 +24,12 @@ if (hamburgerBtn && mainNav) {
 
 /* ==========================================================================
    İLGİ ALANLARIM (Kitap Galerisi - ilgi.html)
+   - Google Books API kullanarak kitap bilgilerini çeker ve listeler.
    ========================================================================== */
 const booksGrid = document.getElementById('booksGrid');
 
 if (booksGrid) {
+    // Sergilenecek favori kitapların listesi
     const myFavoriteBooks = [
         "Melekler ve Şeytanlar Dan Brown",
         "Bülbülü Öldürmek Harper Lee",
@@ -41,38 +45,44 @@ if (booksGrid) {
         "Küçük Prens Antoine de Saint-Exupéry"
     ];
 
+    // API'den kitap verilerini çeken asenkron fonksiyon
     async function fetchBooks() {
         try {
+            // Her kitap ismi için API isteği oluştur
             const fetchPromises = myFavoriteBooks.map(async (title) => {
                 try {
                     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(title)}&maxResults=1`);
                     const data = await response.json();
-                    return data.items ? data.items[0].volumeInfo : null;
+                    return data.items ? data.items[0].volumeInfo : null; // Veri varsa döndür
                 } catch (err) {
-                    return null;
+                    return null; // Hata durumunda null döndür
                 }
             });
 
+            // Tüm isteklerin tamamlanmasını bekle
             const results = await Promise.all(fetchPromises);
-            const validBooks = results.filter(book => book !== null);
-            renderBooks(validBooks);
+            const validBooks = results.filter(book => book !== null); // Sadece başarılı sonuçları filtrele
+            renderBooks(validBooks); // Kitapları ekrana bas
 
         } catch (error) {
             booksGrid.innerHTML = '<p class="error-msg-books">Bir hata oluştu.</p>';
         }
     }
 
+    // Kitap kartlarını HTML içine yerleştiren fonksiyon
     function renderBooks(books) {
-        booksGrid.innerHTML = '';
+        booksGrid.innerHTML = ''; // Önce temizle
 
         books.forEach(book => {
             const card = document.createElement('div');
             card.className = 'book-card';
 
+            // Kitap resmi, yazarı ve puanı için varsayılan değerler ata
             const coverImg = book.imageLinks ? book.imageLinks.thumbnail.replace('http:', 'https:') : 'https://via.placeholder.com/300x450?text=Kapak+Yok';
             const author = book.authors ? book.authors[0] : 'Bilinmeyen Yazar';
             const rating = book.averageRating ? `⭐ ${book.averageRating}` : '⭐ 4.8';
 
+            // Kart içeriğini oluştur
             card.innerHTML = `
                 <button class="close-btn" onclick="this.parentElement.remove()">✕</button>
                 <div class="book-poster">
@@ -85,15 +95,17 @@ if (booksGrid) {
                 <p class="book-author">${author}</p>
                 <a href="${book.infoLink}" target="_blank" class="btn-incele">İncele</a>
             `;
-            booksGrid.appendChild(card);
+            booksGrid.appendChild(card); // Kartı ızgaraya ekle
         });
     }
 
+    // Sayfa yüklendiğinde API isteğini başlat
     window.addEventListener('load', fetchBooks);
 }
 
 /* ==========================================================================
    İLETİŞİM FORMU DOĞRULAMALARI (iletisim.html)
+   - Form verilerinin doğruluğunu kontrol eder.
    ========================================================================== */
 const contactForm = document.getElementById('contactForm');
 const nativeSubmit = document.getElementById('nativeSubmit');
@@ -102,9 +114,9 @@ const vueSubmit = document.getElementById('vueSubmit');
 if (contactForm && nativeSubmit) {
     // 1. NATIVE JAVASCRIPT DOĞRULAMASI
     nativeSubmit.addEventListener('click', function() {
-        let valid = true;
+        let valid = true; // Formun geçerli olup olmadığını tutan değişken
 
-        // Ad kontrolü
+        // Ad kontrolü: En az 2 karakter olmalı
         const name = document.getElementById('name').value.trim();
         const nameErr = document.getElementById('nameErr');
         if (name.length < 2) {
@@ -114,7 +126,7 @@ if (contactForm && nativeSubmit) {
             nameErr.classList.remove('show');
         }
 
-        // E-posta kontrolü
+        // E-posta kontrolü: Regex ile format kontrolü
         const email = document.getElementById('email').value.trim();
         const emailErr = document.getElementById('emailErr');
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -125,7 +137,7 @@ if (contactForm && nativeSubmit) {
             emailErr.classList.remove('show');
         }
 
-        // Telefon kontrolü
+        // Telefon kontrolü: Sayı ve belirli format kontrolü
         const phone = document.getElementById('phone').value.trim();
         const phoneErr = document.getElementById('phoneErr');
         if (phone && !/^[0-9\s\+\-]{10,15}$/.test(phone)) {
@@ -135,7 +147,7 @@ if (contactForm && nativeSubmit) {
             phoneErr.classList.remove('show');
         }
 
-        // Cinsiyet kontrolü
+        // Cinsiyet kontrolü: Seçim yapılmış mı?
         const gender = document.querySelector('input[name="gender"]:checked');
         const genderErr = document.getElementById('genderErr');
         if (!gender) {
@@ -145,7 +157,7 @@ if (contactForm && nativeSubmit) {
             genderErr.classList.remove('show');
         }
 
-        // Şehir kontrolü
+        // Şehir kontrolü: Boş bırakılmamalı
         const city = document.getElementById('city').value.trim();
         const cityErr = document.getElementById('cityErr');
         if (city.length < 2) {
@@ -155,9 +167,7 @@ if (contactForm && nativeSubmit) {
             cityErr.classList.remove('show');
         }
 
-
-
-        // Mesaj kontrolü
+        // Mesaj kontrolü: En az 10 karakter olmalı
         const message = document.getElementById('message').value.trim();
         const messageErr = document.getElementById('messageErr');
         if (message.length < 10) {
@@ -167,7 +177,7 @@ if (contactForm && nativeSubmit) {
             messageErr.classList.remove('show');
         }
 
-        // KVKK onay kontrolü
+        // KVKK onay kontrolü: Checkbox işaretli mi?
         const consent = document.getElementById('consent').checked;
         const consentErr = document.getElementById('consentErr');
         if (!consent) {
@@ -177,14 +187,15 @@ if (contactForm && nativeSubmit) {
             consentErr.classList.remove('show');
         }
 
+        // Tüm kontroller geçerliyse formu gönder
         if (valid) {
-            alert("Native JS: Doğrulama başarılı! Form gönderiliyor...");
             contactForm.submit();
         }
     });
 }
 
 // 2. VUE.JS / LIBRARY DOĞRULAMASI
+// Eğer Vue kütüphanesi yüklüyse alternatif bir doğrulama yöntemi sunar
 if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
     const { createApp } = Vue;
 
@@ -193,6 +204,7 @@ if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
             validateWithVue() {
                 let valid = true;
 
+                // Verileri formdan al
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
                 const phone = document.getElementById('phone').value.trim();
@@ -200,6 +212,7 @@ if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
                 const message = document.getElementById('message').value.trim();
                 const consent = document.getElementById('consent').checked;
 
+                // Benzer kontrolleri Vue metodu içinde yap
                 if (name.length < 2) {
                     document.getElementById('nameErr').classList.add('show');
                     valid = false;
@@ -252,7 +265,6 @@ if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
                 }
 
                 if (valid) {
-                    alert("Vue.js Library: Doğrulama başarılı! Form gönderiliyor...");
                     document.getElementById('contactForm').submit();
                 }
             }
@@ -262,24 +274,39 @@ if (typeof Vue !== 'undefined' && document.getElementById('vueApp')) {
 
 /* ==========================================================================
    GİRİŞ YAP (login.html)
+   - Login işleminin istemci tarafı kontrolleri ve hata gösterimi.
    ========================================================================== */
 const loginForm = document.getElementById('loginForm');
 
 if (loginForm) {
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // Sayfa yüklendiğinde URL'de hata parametresi var mı kontrol et (PHP'den yönlendirme geldiyse)
+    window.addEventListener('load', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            const loginError = document.getElementById('loginError');
+            if (loginError) {
+                loginError.classList.add('show');
+                // Hata tipine göre mesajı güncelle
+                if (urlParams.get('error') === 'empty') {
+                    loginError.innerHTML = '❌ Lütfen tüm alanları doldurun!';
+                } else {
+                    loginError.innerHTML = '❌ Hatalı kullanıcı adı veya şifre!';
+                }
+            }
+        }
+    });
 
+    // Form gönderilmeden önce istemci tarafında son kontrolü yap
+    loginForm.addEventListener('submit', function(e) {
         const studentNo = document.getElementById('studentNo').value.trim();
         const password = document.getElementById('password').value.trim();
 
         const studentNoErr = document.getElementById('studentNoErr');
         const passwordErr = document.getElementById('passwordErr');
-        const loginError = document.getElementById('loginError');
-        const loginSuccess = document.getElementById('loginSuccess');
-
+        
         let valid = true;
 
-        // Öğrenci no (e-posta) kontrolü
+        // Öğrenci no (e-posta) format kontrolü
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(studentNo)) {
             studentNoErr.classList.add('show');
@@ -288,34 +315,25 @@ if (loginForm) {
             studentNoErr.classList.remove('show');
         }
 
-        // Şifre kontrolü
-        if (password.length < 6) {
+        // Şifre boş mu kontrolü
+        if (password === "") {
             passwordErr.classList.add('show');
             valid = false;
         } else {
             passwordErr.classList.remove('show');
         }
 
-        if (!valid) return;
-
-        const studentPrefix = studentNo.split('@')[0];
-
-        // Giriş kontrolü (Öğrenci numarası ve şifre aynı olmalı)
-        if (studentPrefix === password && studentPrefix !== '') {
-            loginError.classList.remove('show');
-            loginSuccess.classList.add('show');
-            setTimeout(() => {
-                loginForm.submit();
-            }, 1000);
-        } else {
-            loginSuccess.classList.remove('show');
-            loginError.classList.add('show');
+        // Geçersizse formun gönderilmesini engelle
+        if (!valid) {
+            e.preventDefault();
+            return;
         }
     });
 }
 
 /* ==========================================================================
    SLIDER (sehir.html)
+   - Görseller arasında geçiş yapılmasını sağlayan slider mantığı.
    ========================================================================== */
 const sliderSection = document.querySelector('.slider');
 if (sliderSection) {
@@ -323,41 +341,47 @@ if (sliderSection) {
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.querySelector('.prev');
     const nextBtn = document.querySelector('.next');
-    let currentSlide = 0;
+    let currentSlide = 0; // Aktif olan slaytın indeksi
 
+    // Belirli bir slaytı gösteren fonksiyon
     function showSlide(index) {
-        if (index >= slides.length) currentSlide = 0;
-        else if (index < 0) currentSlide = slides.length - 1;
+        if (index >= slides.length) currentSlide = 0; // Sona gelindiyse başa dön
+        else if (index < 0) currentSlide = slides.length - 1; // Baştaysak sona git
         else currentSlide = index;
 
+        // Tüm slaytlardan ve noktalardan 'active' sınıfını kaldır
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
 
+        // Aktif olan slaytı ve noktayı işaretle
         slides[currentSlide].classList.add('active');
         if (dots.length > 0) {
             dots[currentSlide].classList.add('active');
         }
     }
 
+    // 'Sonraki' butonu tıklama olayı
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
             showSlide(currentSlide + 1);
         });
     }
 
+    // 'Önceki' butonu tıklama olayı
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
             showSlide(currentSlide - 1);
         });
     }
 
+    // Navigasyon noktalarına tıklama olayı
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             showSlide(index);
         });
     });
 
-    // Otomatik geçiş
+    // Otomatik geçiş (Her 5 saniyede bir sonraki slayta geç)
     setInterval(() => {
         showSlide(currentSlide + 1);
     }, 5000);

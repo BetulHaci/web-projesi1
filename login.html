@@ -9,43 +9,50 @@
 </head>
 <body>
 
+  <!-- Giriş Sayfası Ana Kapsayıcı -->
   <div class="login-page">
     <div class="login-box">
+      <!-- Site Logosu -->
       <div class="logo">Betül Haci</div>
       <p class="subtitle">Öğrenci numaranız ve şifrenizle giriş yapın</p>
 
+      <!-- Giriş Formu (php/login.php dosyasına POST edilir) -->
       <form id="loginForm" action="php/login.php" method="POST" novalidate>
+        <!-- Kullanıcı Adı (Öğrenci No / Email) -->
         <div class="form-group">
           <label for="studentNo">Öğrenci Numarası *</label>
           <input type="text" id="studentNo" name="studentNo" placeholder="b241210060@sakarya.edu.tr">
+          <!-- Hata Mesajı Alanı -->
           <span class="error-msg" id="studentNoErr">Geçerli bir öğrenci e-postası girin.</span>
         </div>
 
+        <!-- Şifre -->
         <div class="form-group">
           <label for="password">Şifre *</label>
           <input type="password" id="password" name="password" placeholder="Şifrenizi girin">
-          <span class="error-msg" id="passwordErr">Şifre en az 6 karakter olmalıdır.</span>
+          <!-- Hata Mesajı Alanı -->
+          <span class="error-msg" id="passwordErr">Şifre boş bırakılamaz.</span>
         </div>
 
+        <!-- Gönder Butonu -->
         <button type="submit" class="btn btn-dark" style="width:100%; margin-top:8px;">
           Giriş Yap →
         </button>
 
+        <!-- PHP'den dönen hataların gösterildiği kutu -->
         <div class="alert-box alert-error" id="loginError">
           ❌ Hatalı öğrenci numarası veya şifre!
         </div>
-
-        <div class="alert-box alert-success" id="loginSuccess">
-          ✅ Hoş geldiniz! Giriş başarılı. Ana sayfaya yönlendiriliyorsunuz...
-        </div>
       </form>
 
+      <!-- Geri Dön Linki -->
       <p style="margin-top:20px; font-size:13px; color:#888;">
         <a href="index.html" style="color:#b5934a;">← Ana Sayfaya Dön</a>
       </p>
     </div>
   </div>
 
+  <!-- JavaScript Dosyası (Form doğrulaması için) -->
   <script src="js/script.js"></script>
 </body>
 </html>

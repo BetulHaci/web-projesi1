@@ -1,21 +1,24 @@
 /* ==========================================================================
    GENEL AYARLAR (Tüm Sayfalar İçin Ortak)
+   - Fontlar, temel sıfırlama ve gövde ayarları.
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Dancing+Script:wght@600&display=swap');
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Padding ve border'ı genişliğe dahil et */
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fdf6ec;
+  background-color: #fdf6ec; /* Sayfa genel arka plan rengi */
   color: #333;
 }
 
-/* ===== NAVBAR (Tüm Sayfalar) ===== */
+/* ===== NAVBAR (Tüm Sayfalar) ===== 
+   - Sayfanın üst kısmında sabit duran menü alanı.
+*/
 header {
   background-color: #fdf6ec;
   border-bottom: 2px solid #e8d8c0;
@@ -23,7 +26,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: sticky; /* Sayfa kaydırılsa da üstte kalır */
   top: 0;
   z-index: 100;
 }
@@ -88,6 +91,7 @@ nav ul a.active {
 
 /* ==========================================================================
    ANA SAYFA (index.html)
+   - Karşılama (Hero) alanı ve tanıtım kartları.
    ========================================================================== */
 .hero {
   display: flex;
@@ -211,6 +215,7 @@ nav ul a.active {
 
 /* ==========================================================================
    CV SAYFASI (cv.html)
+   - Özgeçmiş layout'u: sol sütun (sidebar) ve sağ sütun.
    ========================================================================== */
 .cv-layout {
   display: grid;
@@ -231,11 +236,18 @@ nav ul a.active {
   height: 110px;
   border-radius: 50%;
   background: #b5934a;
-  font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16px;
+  overflow: hidden;
+  border: 3px solid #b5934a;
+}
+
+.cv-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cv-sidebar h2 {
@@ -300,6 +312,7 @@ nav ul a.active {
 
 /* ==========================================================================
    ŞEHİR VE MİRAS SAYFALARI (sehir.html , miras.html)
+   - Büyük görsel alanları ve metin içerikleri.
    ========================================================================== */
 .page-banner {
   background: linear-gradient(rgba(30, 30, 20, 0.6), rgba(30, 30, 20, 0.6)),
@@ -326,6 +339,7 @@ nav ul a.active {
 
 /* ==========================================================================
    İLGİ ALANLARIM SAYFASI (ilgi.html)
+   - Kitap galerisi, API loader ve kart animasyonları.
    ========================================================================== */
 .header-section {
   text-align: center;
@@ -536,6 +550,7 @@ nav ul a.active {
 
 /* ==========================================================================
    İLETİŞİM SAYFASI (iletisim.html)
+   - İletişim bilgileri ve doğrulama destekli form alanı.
    ========================================================================== */
 .contact-layout {
   display: grid;
@@ -653,6 +668,7 @@ nav ul a.active {
 
 /* ==========================================================================
    GİRİŞ YAP SAYFASI (login.html)
+   - Koyu temalı giriş ekranı ve form kutusu.
    ========================================================================== */
 .login-page {
   min-height: 100vh;
@@ -707,6 +723,7 @@ nav ul a.active {
 
 /* ==========================================================================
    FOOTER (Tüm Sayfalar)
+   - Sayfa sonu logo ve telif hakkı metni.
    ========================================================================== */
 footer {
   background: #1e1e14;
@@ -723,7 +740,7 @@ footer .footer-logo {
   margin-bottom: 8px;
 }
 
-/* ===== HAMBURGER MENÜ BUTONU ===== */
+/* ===== HAMBURGER MENÜ BUTONU (Mobil İçin) ===== */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -770,6 +787,7 @@ footer .footer-logo {
 
 /* ==========================================================================
    MOBİL UYUM (Responsive Tasarım)
+   - Küçük ekranlar için menü ve layout düzenlemeleri.
    ========================================================================== */
 @media (max-width: 768px) {
   header {
