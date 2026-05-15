@@ -4,6 +4,7 @@ $studentNo = isset($_POST['studentNo']) ? trim($_POST['studentNo']) : '';
 $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 // 1. Boş alan kontrolü: Kullanıcı adı veya şifre boşsa geri gönder
+
 if (empty($studentNo) || empty($password)) {
     header("Location: ../login.html?error=empty");
     exit();

@@ -298,6 +298,7 @@ if (loginForm) {
 
     // Form gönderilmeden önce istemci tarafında son kontrolü yap
     loginForm.addEventListener('submit', function(e) {
+        // İstemci tarafı temel doğrulama
         const studentNo = document.getElementById('studentNo').value.trim();
         const password = document.getElementById('password').value.trim();
 
@@ -328,6 +329,8 @@ if (loginForm) {
             e.preventDefault();
             return;
         }
+        
+        // Eğer her şey normalse, form normal şekilde PHP'ye POST edilir (e.preventDefault() çağrılmadığı için)
     });
 }
 
