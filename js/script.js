@@ -289,6 +289,8 @@ if (loginForm) {
                 // Hata tipine göre mesajı güncelle
                 if (urlParams.get('error') === 'empty') {
                     loginError.innerHTML = '❌ Lütfen tüm alanları doldurun!';
+                } else if (urlParams.get('error') === 'invalid_format') {
+                    loginError.innerHTML = '❌ Lütfen geçerli bir öğrenci e-postası girin!';
                 } else {
                     loginError.innerHTML = '❌ Hatalı kullanıcı adı veya şifre!';
                 }
