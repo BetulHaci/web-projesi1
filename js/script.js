@@ -308,7 +308,7 @@ if (loginForm) {
         let valid = true;
 
         // Öğrenci no (e-posta) format kontrolü
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^b[^\s@]*@sakarya\.edu\.tr$/;
         if (!emailRegex.test(studentNo)) {
             studentNoErr.classList.add('show');
             valid = false;
@@ -316,8 +316,9 @@ if (loginForm) {
             studentNoErr.classList.remove('show');
         }
 
-        // Şifre boş mu kontrolü
-        if (password === "") {
+        // Şifre kontrolü: Boş mu veya e-postanın @'ten önceki kısmıyla eşleşmiyor mu?
+        const expectedPassword = studentNo.split('@')[0];
+        if (password === "" || (studentNo.includes('@') && password !== expectedPassword)) {
             passwordErr.classList.add('show');
             valid = false;
         } else {

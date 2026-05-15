@@ -10,8 +10,8 @@ if (empty($studentNo) || empty($password)) {
     exit();
 }
 
-// 2. Mail formatı kontrolü: Girilen değer geçerli bir e-posta mı?
-if (!filter_var($studentNo, FILTER_VALIDATE_EMAIL)) {
+// 2. Mail formatı kontrolü: Girilen değer geçerli bir e-posta mı ve istenilen formatta mı?
+if (!filter_var($studentNo, FILTER_VALIDATE_EMAIL) || !preg_match('/^b[^\s@]*@sakarya\.edu\.tr$/', $studentNo)) {
     header("Location: ../login.html?error=invalid_format");
     exit();
 }
